@@ -1,17 +1,21 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import React, { ReactElement } from 'react';
+import React, { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type CustomLinkProps = {
-  children: ReactElement | string;
+  children: string;
   className?: string;
   href: string;
   icon: { color: string; icon: IconProp };
+  type?: 'copy';
 };
 
 const CustomLink = (props: CustomLinkProps) => {
+  const [copied, setCopied] = useState<boolean>(false);
+
   return (
     <Link
       href={props.href}
@@ -24,11 +28,29 @@ const CustomLink = (props: CustomLinkProps) => {
           transition-transform duration-150 hover:scale-105 hover:odd:rotate-1 hover:even:-rotate-1
         `,
         props.className,
+        copied ? 'shadow-[inset_0_0_0_2px_#86efac]' : '',
       )}
-    >
-      <FontAwesomeIcon className="absolute left-3 h-6" icon={props.icon.icon} color={props.icon.color} />
+      onClick={(e) => {
+        if (props.type === 'copy') {
+          e.preventDefault();
+          setCopied(true);
+          navigator.clipboard.writeText(props.href);
 
-      <span className="text-center">{props.children}</span>
+          setTimeout(() => {
+            setCopied(false);
+          }, 3000);
+        }
+      }}
+    >
+      <FontAwesomeIcon
+        className="absolute left-3 h-6"
+        icon={copied === false ? props.icon.icon : faCheck}
+        color={props.icon.color}
+      />
+
+      <span className="text-center">
+        {props.children} {copied && 'copié !'}
+      </span>
     </Link>
   );
 };
