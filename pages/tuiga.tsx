@@ -13,7 +13,7 @@ const TuigaPage: NextPage = () => {
 
   return (
     <LinkPage
-      title="Noa Audebert"
+      title="Noa Aubert"
       profileSrc="/tuiga_profile.jpg"
       wallpaperSrc="/tuiga_wallpaper.jpg"
       icons={[
