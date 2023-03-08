@@ -39,10 +39,10 @@ const LinkPage = (props: LinkPageProps) => {
       <div className="absolute inset-0 bg-black/40" />
 
       <div
-        className="absolute top-12 left-12 cursor-pointer text-2xl font-black text-white"
+        className="absolute top-6 left-6 z-10 cursor-pointer text-2xl font-black text-white md:top-12 md:left-12"
         onClick={() => setShareModal(true)}
       >
-        <FontAwesomeIcon icon={faShareAlt} /> Share
+        <FontAwesomeIcon className="mmd:h-10" icon={faShareAlt} /> <span className="hidden md:inline-block">Share</span>
       </div>
 
       {shareModal && <ShareModal close={() => setShareModal(false)} />}

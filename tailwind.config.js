@@ -4,7 +4,13 @@ module.exports = {
   plugins: [],
   theme: {
     extend: {
-      backgroundImage: {},
+      screens: {
+        m2xl: { max: '1535px' },
+        mlg: { max: '1023px' },
+        mmd: { max: '767px' },
+        msm: { max: '639px' },
+        mxl: { max: '1279px' },
+      },
     },
   },
 };
