@@ -39,8 +39,8 @@ const TuigaPage: NextPage = () => {
           children: 'Discord',
           className: 'bg-gradient-to-br from-purple-200 to-slate-200',
           href: discord,
-          type: 'copy',
           icon: { color: '#7289da', icon: faDiscord },
+          type: 'copy',
         },
         {
           children: 'Tiktok',

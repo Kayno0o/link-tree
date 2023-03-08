@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import IconLink from './IconLink';
 import CustomLink from './CustomLink';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import ShareModal from './ShareModal';
 
 type LinkPageProps = {
   icons: Array<{
@@ -22,6 +25,8 @@ type LinkPageProps = {
 };
 
 const LinkPage = (props: LinkPageProps) => {
+  const [shareModal, setShareModal] = useState(false);
+
   return (
     <div className="relative flex min-h-screen justify-center">
       <div
@@ -32,6 +37,15 @@ const LinkPage = (props: LinkPageProps) => {
       />
 
       <div className="absolute inset-0 bg-black/40" />
+
+      <div
+        className="absolute top-12 left-12 cursor-pointer text-2xl font-black text-white"
+        onClick={() => setShareModal(true)}
+      >
+        <FontAwesomeIcon icon={faShareAlt} /> Share
+      </div>
+
+      {shareModal && <ShareModal close={() => setShareModal(false)} />}
 
       <div className="relative mx-6 flex h-full min-h-screen w-full max-w-2xl flex-col px-6 py-12">
         <div className="flex w-full flex-[1] flex-col items-center justify-between gap-10">
